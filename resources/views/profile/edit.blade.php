@@ -25,11 +25,11 @@
                             <div class="mt-1">
                                 @if (auth()->user()->isAdmin())
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-                                        🛡️ Global Admin
+                                         Global Admin
                                     </span>
                                 @else
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                        👤 Member
+                                         Member
                                     </span>
                                 @endif
                             </div>
