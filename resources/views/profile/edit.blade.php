@@ -41,11 +41,11 @@
                             <div class="mt-1">
                                 @if (auth()->user()->is_banned)
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                        🚫 Banned
+                                         Banned
                                     </span>
                                 @else
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                        ✅ Active
+                                         Active
                                     </span>
                                 @endif
                             </div>
