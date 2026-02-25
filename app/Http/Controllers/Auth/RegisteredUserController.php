@@ -15,19 +15,13 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+  
     public function create(): View
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+ 
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -42,7 +36,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Promote the very first registered user to global admin automatically.
+        
         if (User::count() === 1) {
             $user->update(['role' => 'admin']);
         }

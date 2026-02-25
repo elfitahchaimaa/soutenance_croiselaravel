@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     * Adds 'role' enum column (admin|member, default: member)
-     * and 'is_banned' boolean column (default: false) to users table.
-     */
+    
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
@@ -19,9 +15,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
