@@ -109,16 +109,20 @@ class ColocationController extends Controller
             ->with('success', 'Colocation updated successfully!');
     }
 
-
+    /*
+    |--------------------------------------------------------------------------
+    | Destroy  (owner cancels colocation)
+    |--------------------------------------------------------------------------
+    */
     public function destroy(Colocation $colocation): RedirectResponse
     {
         $this->authorizeOwner($colocation);
 
         // Set all active memberships as left
-        $colocation->activeMembers()->updateExistingPivot(
-            $colocation->activeMembers()->pluck('users.id')->toArray(),
-            ['left_at' => now()]
-        );
+        $memberIds = $colocation->activeMembers()->pluck('users.id')->toArray();
+        foreach ($memberIds as $memberId) {
+            $colocation->members()->updateExistingPivot($memberId, ['left_at' => now()]);
+        }
 
         $colocation->update(['status' => 'cancelled']);
 
@@ -126,7 +130,11 @@ class ColocationController extends Controller
             ->with('success', 'Colocation has been cancelled.');
     }
 
-
+    /*
+    |--------------------------------------------------------------------------
+    | Private helpers
+    |--------------------------------------------------------------------------
+    */
     private function authorizeOwner(Colocation $colocation): void
     {
         if (! $colocation->isOwner(auth()->user())) {

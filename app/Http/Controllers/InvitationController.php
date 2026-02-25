@@ -106,7 +106,7 @@ class InvitationController extends Controller
 
         $invitation->update(['status' => 'accepted']);
 
-        return redirect()->route('colocations.show', $invitation->colocation_id)
+        return redirect()->route('colocations.show', $invitation->colocation)
             ->with('success', 'You have joined the colocation!');
     }
 
